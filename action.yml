@@ -1,10 +1,11 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Tree is clean'
+description: 'Check whether previous actions left the Git working tree clean'
+author: 'Chris Black'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  consider-untracked:
+    description: fail build on newly added files, or only on changes to tracked files?
+    default: true
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'

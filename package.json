@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
+  "name": "tree-is-clean",
+  "version": "1.0.0",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "Check whether previous actions left the Git working tree clean",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -22,10 +22,12 @@
     "node",
     "setup"
   ],
-  "author": "YourNameOrOrganization",
+  "author": "Chris Black",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.0"
+    "@actions/core": "^1.2.2",
+    "@actions/exec": "^1.0.3",
+    "child_process": "^1.0.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",
