@@ -37,14 +37,14 @@ beforeEach(() => {
   }
 })
 
-function execute_action(consider_untracked: string) {
+function execute_action(check_untracked: string) {
   const ip = path.join(__dirname, '..', 'lib', 'main.js')
   const options: cp.ExecSyncOptions = {
     env: process.env
   }
   if (options.env) {
     // `if` is just to shut up Typescript "object may be undefined"
-    options.env['INPUT_CONSIDER-UNTRACKED'] = consider_untracked
+    options.env['INPUT_CHECK_UNTRACKED'] = check_untracked
   }
 
   // cp.execSync throws if cmd status not zero,
@@ -78,7 +78,7 @@ test('modified file', () => {
 
 test('new file', () => {
   fs.writeFileSync('b.txt', 'this is a new file')
-  // consider-untracked should be treated as true if unset
+  // check_untracked should be treated as true if unset
   var out_implicit_true = execute_action('')
   expect(out_implicit_true.status).not.toBe(0)
   expect(out_implicit_true.msg).toMatch('::error::')
