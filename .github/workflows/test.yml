@@ -20,8 +20,8 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ./
       with: 
-        consider-untracked: true
+        check_untracked: true
     - run: touch new.txt
     - uses: ./
       with:
-        consider-untracked: false
+        check_untracked: false

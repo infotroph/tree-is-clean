@@ -2,7 +2,7 @@ name: 'Tree is clean'
 description: 'Check whether previous actions left the Git working tree clean'
 author: 'Chris Black'
 inputs:
-  consider-untracked:
+  check_untracked:
     description: fail build on newly added files, or only on changes to tracked files?
     default: true
     required: false
