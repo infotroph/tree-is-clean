@@ -15,6 +15,8 @@ beforeAll(() => {
     )
     process.chdir(test_dir)
     cp.execSync('git init')
+    cp.execSync('git config user.name "test user"')
+    cp.execSync('git config user.email "nobody@example.com"')
     fs.writeFileSync('a.txt', 'abcde')
     cp.execSync('git add .')
     cp.execSync('git commit -m "first"')

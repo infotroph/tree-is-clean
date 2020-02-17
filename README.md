@@ -20,7 +20,7 @@ steps:
       consider-untracked: true
 ```
 
-To work at all, `tree-is-clean` needs to run inside a Git repository, so call it downstream of `actions/checkout`. To do anything useful, call it downstream of the file manipulations you want to check. I usualy call it once at the end, but it would be fine to call it multiple times during the same job if, say, you have many steps and want to fail early if any one of them dirties the working tree.
+To work at all, `tree-is-clean` needs to run inside a Git repository, so call it downstream of `actions/checkout`. To do anything useful, call it downstream of the file manipulations you want to check. I usually call it once at the end, but it would be fine to call it multiple times during the same job if, say, you have many steps and want to fail early if any one of them dirties the working tree.
 
 If the working tree is clean, the action finishes with no output and the build continues. But if any step between `checkout` and `tree-is-clean` changes any files, the build will fail and the log will contain a summary of the changes:
 
