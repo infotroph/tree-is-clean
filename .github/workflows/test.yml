@@ -21,3 +21,7 @@ jobs:
     - uses: ./
       with: 
         consider-untracked: true
+    - run: touch new.txt
+    - uses: ./
+      with:
+        consider-untracked: false
