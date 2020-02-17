@@ -105,5 +105,6 @@ test('new plus modified', () => {
   process.env['INPUT_CONSIDER-UNTRACKED'] = 'false'
   out = execute_action()
   expect(out.status).not.toBe(0)
-  expect(out.msg).toMatch(new RegExp('M a.txt\\s+::error::'))
+  expect(out.msg).toMatch('M a.txt')
+  expect(out.msg).not.toMatch('?? b.txt')
 })
