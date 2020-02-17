@@ -24,4 +24,4 @@ To work at all, `tree-is-clean` needs to run inside a Git repository, so call it
 
 If the working tree is clean, the action finishes with no output and the build continues. But if any step between `checkout` and `tree-is-clean` changes any files, the build will fail and the log will contain a summary of the changes:
 
-TKTK example here as soon as I have one to paste.
+![Screenshot of build failure from a dirty working tree](img/diff-sample.png)
