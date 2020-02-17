@@ -78,20 +78,18 @@ test('modified file', () => {
 test('new file', () => {
   fs.writeFileSync('b.txt', 'this is a new file')
   // consider-untracked should be treated as true if unset
-  var out_implicit = execute_action('')
-  expect(out_implicit.status).not.toBe(0)
-  expect(out_implicit.msg).toMatch('::error::')
-  expect(out_implicit.msg).toMatch('?? b.txt')
+  var out_implicit_true = execute_action('')
+  expect(out_implicit_true.status).not.toBe(0)
+  expect(out_implicit_true.msg).toMatch('::error::')
+  expect(out_implicit_true.msg).toMatch('?? b.txt')
 
-  var out_explicit = execute_action('true')
-  expect(out_explicit).toEqual(out_implicit)
-  expect(out_explicit.msg).toMatch('::error::')
-  expect(out_explicit.msg).toMatch('?? b.txt')
+  var out_explicit_true = execute_action('true')
+  expect(out_explicit_true).toEqual(out_implicit_true)
 
-  var out = execute_action('false')
-  expect(out.status).toBe(0)
-  expect(out.msg).not.toMatch('::error::')
-  expect(out.msg).not.toMatch('b.txt')
+  var out_false = execute_action('false')
+  expect(out_false.status).toBe(0)
+  expect(out_false.msg).not.toMatch('::error::')
+  expect(out_false.msg).not.toMatch('b.txt')
 })
 
 test('new plus modified', () => {
