@@ -37,10 +37,13 @@ beforeEach(() => {
   }
 })
 
-function execute_action() {
+function execute_action(consider_untracked: string) {
   const ip = path.join(__dirname, '..', 'lib', 'main.js')
   const options: cp.ExecSyncOptions = {
     env: process.env
+  }
+  if (options.env) { // always true but shuts up Typescript "object may be undefined"
+    options.env['INPUT_CONSIDER-UNTRACKED'] = consider_untracked
   }
 
   // cp.execSync throws if cmd status not zero,
@@ -59,35 +62,33 @@ function execute_action() {
 }
 
 test('clean env', () => {
-  var out = execute_action()
+  var out = execute_action('true')
   expect(out.status).toBe(0)
   expect(out.msg).toMatch(new RegExp('^\\[command\\].*--porcelain\\s*$'))
 })
 
 test('modified file', () => {
   fs.appendFileSync('a.txt', 'fghi')
-  var out = execute_action()
+  var out = execute_action('true')
   expect(out.status).not.toBe(0)
   expect(out.msg).toMatch('::error::')
   expect(out.msg).toMatch('M a.txt')
 })
 
 test('new file', () => {
-  // want consider-untracked to default to true
   fs.writeFileSync('b.txt', 'this is a new file')
-  var out = execute_action()
-  expect(out.status).not.toBe(0)
-  expect(out.msg).toMatch('::error::')
-  expect(out.msg).toMatch('?? b.txt')
+  // consider-untracked should be treated as true if unset
+  var out_implicit = execute_action('')
+  expect(out_implicit.status).not.toBe(0)
+  expect(out_implicit.msg).toMatch('::error::')
+  expect(out_implicit.msg).toMatch('?? b.txt')
 
-  process.env['INPUT_CONSIDER-UNTRACKED'] = 'true'
-  out = execute_action()
-  expect(out.status).not.toBe(0)
-  expect(out.msg).toMatch('::error::')
-  expect(out.msg).toMatch('?? b.txt')
+  var out_explicit = execute_action('true')
+  expect(out_explicit).toEqual(out_implicit)
+  expect(out_explicit.msg).toMatch('::error::')
+  expect(out_explicit.msg).toMatch('?? b.txt')
 
-  process.env['INPUT_CONSIDER-UNTRACKED'] = 'false'
-  out = execute_action()
+  var out = execute_action('false')
   expect(out.status).toBe(0)
   expect(out.msg).not.toMatch('::error::')
   expect(out.msg).not.toMatch('b.txt')
@@ -97,13 +98,11 @@ test('new plus modified', () => {
   fs.writeFileSync('b.txt', 'ignorable content here')
   fs.appendFileSync('a.txt', 'jklm')
 
-  process.env['INPUT_CONSIDER-UNTRACKED'] = 'true'
-  var out = execute_action()
+  var out = execute_action('true')
   expect(out.status).not.toBe(0)
   expect(out.msg).toMatch(new RegExp('M a.txt\\s+\\?\\? b.txt\\s+::error::'))
 
-  process.env['INPUT_CONSIDER-UNTRACKED'] = 'false'
-  out = execute_action()
+  out = execute_action('false')
   expect(out.status).not.toBe(0)
   expect(out.msg).toMatch('M a.txt')
   expect(out.msg).not.toMatch('?? b.txt')
