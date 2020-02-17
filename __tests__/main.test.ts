@@ -42,7 +42,8 @@ function execute_action(consider_untracked: string) {
   const options: cp.ExecSyncOptions = {
     env: process.env
   }
-  if (options.env) { // always true but shuts up Typescript "object may be undefined"
+  if (options.env) {
+    // `if` is just to shut up Typescript "object may be undefined"
     options.env['INPUT_CONSIDER-UNTRACKED'] = consider_untracked
   }
 
