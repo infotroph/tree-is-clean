@@ -1,3 +1,14 @@
+## [1.0.2], 2020-11-04
+
+* Bump dependencies to mitigate vulnerabilities in
+	`lodash`, `yargs-parser`, `node-fetch`, `@actions/core`
+* Add summary of dependency licenses in `dist/licenses.txt`
+* Update eslint
+* Run CI tests using `npm ci` and with v2 of `@actions/checkout`
+* Build releases according to current recommendations in
+	`@actions/typescript-action`.
+	Specifically: `node_modules` no longer added to release branch.
+
 
 ## [1.0.1], 2020-03-21
 
