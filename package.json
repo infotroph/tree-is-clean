@@ -1,6 +1,6 @@
 {
   "name": "tree-is-clean",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "Check whether previous actions left the Git working tree clean",
   "main": "lib/main.js",

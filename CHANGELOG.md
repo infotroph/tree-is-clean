@@ -1,3 +1,7 @@
+## [1.0.3], 2022-01-08
+
+* Update to Node 16
+
 ## [1.0.2], 2020-11-04
 
 * Bump dependencies to mitigate vulnerabilities in
