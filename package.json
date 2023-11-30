@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "private": true,
   "description": "Check whether previous actions left the Git working tree clean",
-  "main": "lib/main.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write **/*.ts",
