@@ -21,19 +21,19 @@ beforeAll(() => {
     cp.execSync('git add .')
     cp.execSync('git commit -m "first"')
   } catch (e) {
-    console.log(e)
+    console.log((e as Error).message)
   }
 })
 
 afterAll(() => {
-  fs.rmdirSync(test_dir, {recursive: true})
+  fs.rmSync(test_dir, {recursive: true})
 })
 
 beforeEach(() => {
   try {
     cp.execSync('git checkout -- .')
   } catch (e) {
-    console.log(e)
+    console.log((e as Error).message)
   }
 })
 
@@ -54,7 +54,7 @@ function execute_action(check_untracked: string) {
       status: 0,
       msg: cp.execSync(`node ${ip}`, options).toString()
     }
-  } catch (e) {
+  } catch (e: any) {
     return {
       status: e.status,
       msg: e.stdout.toString()
