@@ -1,3 +1,7 @@
+## [1.0.4], 2023-11-30
+
+* Update to Node 20 and Typescript 5, with bumps to almost every dependency.
+
 ## [1.0.3], 2022-01-08
 
 * Update to Node 16
