@@ -5,7 +5,8 @@
   "description": "Check whether previous actions left the Git working tree clean",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "ncc build --license licenses.txt",
+    "build-tsc": "tsc",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
