@@ -1,6 +1,6 @@
 {
   "name": "tree-is-clean",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "private": true,
   "description": "Check whether previous actions left the Git working tree clean",
   "main": "dist/index.js",

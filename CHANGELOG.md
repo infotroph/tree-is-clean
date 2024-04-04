@@ -1,3 +1,7 @@
+## [1.0.6], 2024-04-04
+
+* Bump unidici to 5.28.4.
+
 ## [1.0.5], 2023-11-30
 
 * Fix broken release by packaging the right file.
