@@ -1,3 +1,7 @@
+## [2.0.0], 2026-03-19
+
+* Update to node 24, with many dependency bumps.
+
 ## [1.0.6], 2024-04-04
 
 * Bump unidici to 5.28.4.
